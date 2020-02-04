@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Text('Accept'),
               onPressed: () async {
                 Navigator.pop(context);
-                pageTwoData = await Navigator.push(
+                var pageTwoDataAux = await Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) {
@@ -52,11 +52,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 );
                 textController.clear(); // Clear TextField after send the data
-                if (pageTwoData == null) {
-                  pageTwoData = '';
+                if (pageTwoDataAux == null) {
+                  pageTwoDataAux = '';
                 }
                 setState(() {
-
+                  pageTwoData = pageTwoDataAux;
                 });
               },
             )
@@ -71,7 +71,9 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Row(
+      body: Flex(
+        direction: Axis.horizontal,
+        mainAxisSize: MainAxisSize.max,
         children: <Widget>[
           Expanded(
             child: Column(
@@ -116,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           )
                       ),
                       onPressed: () async {
-                        pageThreeData = await Navigator.push(
+                        var pageThreeDataAux = await Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) {
@@ -124,11 +126,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                 }
                             )
                         );
-                        if (pageThreeData == null) {
-                          pageThreeData = '';
+                        if (pageThreeDataAux == null) {
+                          pageThreeDataAux = '';
                         }
                         setState(() {
-
+                          pageThreeData = pageThreeDataAux;
                         });
                       },
                       color: Colors.blueAccent,
