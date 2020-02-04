@@ -32,48 +32,58 @@ class _PageTwoState extends State<PageTwo> {
             ],
           ),
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: Flex(
+          //mainAxisAlignment: MainAxisAlignment.center,
+          direction: Axis.horizontal,
+          mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             Expanded(
               child: Column(
                 children: <Widget>[
-                  Padding(padding: EdgeInsets.only(top: 48)),
-                  Text(
-                    'Generate random number',
-                    style: TextStyle(
-                      color: Colors.deepPurple,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18
+                  Padding(
+                    padding: EdgeInsets.only(top: 48),
+                    child: Text(
+                      'Generate random number',
+                      style: TextStyle(
+                          color: Colors.deepPurple,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18
+                      ),
                     ),
                   ),
-                  Padding(padding: EdgeInsets.only(top: 24)),
-                  Text(
-                    '$randomNumber',
-                    style: TextStyle(
-                      color: Colors.red,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24
+                  Padding(
+                    padding: EdgeInsets.only(top: 24),
+                    child: Text(
+                      '$randomNumber',
+                      style: TextStyle(
+                          color: Colors.red,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24
+                      ),
+                    ),
                   ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 24),
+                    child:   MaterialButton(
+                      child: Text('Generate'),
+                      color: Colors.white,
+                      onPressed: () {
+                        setState(() {
+                          randomNumber = new Random().nextInt(200);
+                        });
+                      },
+                    ),
                   ),
-                  Padding(padding: EdgeInsets.only(top: 24)),
-                  MaterialButton(
-                    child: Text('Generate'),
-                    color: Colors.white,
-                    onPressed: () {
-                      setState(() {
-                        randomNumber = new Random().nextInt(200);
-                      });
-                    },
+                  Padding(
+                      padding: EdgeInsets.only(top: 12),
+                      child: MaterialButton(
+                        child: Text('Save'),
+                        color: Colors.white,
+                        onPressed: () {
+                          Navigator.pop(context, '$randomNumber');
+                        },
+                      )
                   ),
-                  Padding(padding: EdgeInsets.only(top: 12)),
-                  MaterialButton(
-                    child: Text('Save'),
-                    color: Colors.white,
-                    onPressed: () {
-                      Navigator.pop(context, '$randomNumber');
-                    },
-                  )
                 ],
               ),
             )
