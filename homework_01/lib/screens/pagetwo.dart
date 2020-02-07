@@ -12,8 +12,10 @@ class PageTwo extends StatefulWidget {
 
 class _PageTwoState extends State<PageTwo> {
   int randomNumber = 0;
+
   @override
   Widget build(BuildContext context) {
+    String dialogText = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -80,7 +82,7 @@ class _PageTwoState extends State<PageTwo> {
                         child: Text('Save'),
                         color: Colors.white,
                         onPressed: () {
-                          Navigator.pop(context, '$randomNumber');
+                          Navigator.pop(context, '$dialogText $randomNumber');
                         },
                       )
                   ),

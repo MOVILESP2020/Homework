@@ -49,6 +49,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     builder: (context) {
                       return PageTwo(title: 'Page 2',);
                     },
+                    settings: RouteSettings(
+                      arguments: textController.text
+                    )
                   ),
                 );
                 textController.clear(); // Clear TextField after send the data
