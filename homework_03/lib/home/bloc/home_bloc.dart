@@ -9,7 +9,9 @@ part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  // TODO: inicializar la box
+
+  Box _remidersBox = Hive.box('reminders');
+
   @override
   HomeState get initialState => HomeInitialState();
 
@@ -40,17 +42,20 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   List<TodoRemainder> _loadReminders() {
-    // ver si existen datos TodoRemainder en la box y sacarlos como Lista (no es necesario hacer get ni put)
-    // debe haber un adapter para que la BD pueda detectar el objeto
+    Map<dynamic, dynamic> raw = _remidersBox.toMap();
+    List list = raw.values.toList();
+    if (list.length > 0) {
+      return list.cast<TodoRemainder>();
+    }
     throw EmptyDatabase();
   }
 
   void _saveTodoReminder(TodoRemainder todoReminder) {
-    // TODO:add item here
+    _remidersBox.add(todoReminder);
   }
 
   void _removeTodoReminder(int removedAtIndex) {
-    // TODO:delete item here
+    _remidersBox.deleteAt(removedAtIndex);
   }
 }
 
